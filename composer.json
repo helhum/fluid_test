@@ -1,7 +1,7 @@
 {
     "name": "helhum/fluid-test",
     "type": "typo3-cms-extension",
-    "description": "Description for ext",
+    "description": "Some Fluid rendering tests",
     "keywords": [
         "TYPO3",
         "extension",
@@ -22,7 +22,6 @@
         "typo3/cms": "^7.6"
     },
     "require-dev": {
-        "namelesscoder/typo3-repository-client": "1.1.x-dev",
         "mikey179/vfsStream": "1.4.*@dev",
         "phpunit/phpunit": "~4.7.0"
     },
