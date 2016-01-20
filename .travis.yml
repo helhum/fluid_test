@@ -22,6 +22,7 @@ cache:
     - $HOME/.composer/cache
 
 before_install:
+  - phpenv config-rm xdebug.ini
   - composer self-update
   - composer --version
   - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
