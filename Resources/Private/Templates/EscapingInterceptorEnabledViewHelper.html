@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      xmlns:f="http://schema.helhum.dev/ns/fluid/ViewHelpers">
+{namespace ft=Helhum\FluidTest\ViewHelpers}
+
+<body>
+
+<h1>EscapingInterceptorEnabledViewHelper</h1>
+<h2>&#123;settings.test&#125; = {settings.test}</h2>
+
+<h3>Tag syntax with children</h3>
+Call: &lt;ft:escapingInterceptorEnabled&gt;&#123;settings.test&#125;&lt;/ft:escapingInterceptorEnabled&gt;
+<br>
+Output: <ft:escapingInterceptorEnabled>{settings.test}</ft:escapingInterceptorEnabled>
+
+<h3>Inline syntax with children</h3>
+Call: &#123;settings.test -> ft:escapingInterceptorEnabled()&#125;
+<br>
+Output: {settings.test -> ft:escapingInterceptorEnabled()}
+
+<h3>Tag syntax with argument</h3>
+Call: &lt;ft:escapingInterceptorEnabled content="&#123;settings.test&#125;" /&gt;
+<br>
+Output: <ft:escapingInterceptorEnabled content="{settings.test}" />
+
+<h3>Inline syntax with argument</h3>
+Call: &#123;ft:escapingInterceptorEnabled(content: settings.test)&#125;
+<br>
+Output: {ft:escapingInterceptorEnabled(content: settings.test)}
+
+<h3>Inline syntax with argument in quotes</h3>
+Call: &#123;ft:escapingInterceptorEnabled(content: '&#123;settings.test&#125;')&#125;
+<br>
+Output: {ft:escapingInterceptorEnabled(content: '{settings.test}')}
+
+<h3>Inline syntax with string</h3>
+Call: &#123;ft:escapingInterceptorEnabled(content: '&lt;strong&gt;Bla&lt;/strong&gt;')&#125;
+<br>
+Output: {ft:escapingInterceptorEnabled(content: '<strong>Bla</strong>')}
+
+<h3>Tag syntax with nested inline syntax and children rendering</h3>
+Call: &lt;ft:escapingInterceptorEnabled content="&#123;settings.test -&gt; ft:escapingInterceptorEnabled()&#125;" /&gt;
+<br>
+Output: <ft:escapingInterceptorEnabled content="{settings.test -> ft:escapingInterceptorEnabled()}" />
+
+<h3>Tag syntax with nested inline syntax and argument in inline</h3>
+Call: &lt;ft:escapingInterceptorEnabled content="&#123;ft:escapingInterceptorEnabled(content: settings.test)&#125;" /&gt;
+<br>
+Output: <ft:escapingInterceptorEnabled content="{ft:escapingInterceptorEnabled(content: settings.test)}" />
+
+</body>
+</html>

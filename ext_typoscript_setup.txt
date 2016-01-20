@@ -1,0 +1,14 @@
+lib.test = TEXT
+lib.test.current = 1
+lib.test.wrap = <h1>|</h1>
+
+page >
+page = PAGE
+page.config.no_cache = 0
+page.config.contentObjectExceptionHandler = 0
+page.10 = FLUIDTEMPLATE
+page.10.file = EXT:fluid_test/Resources/Private/Templates/EscapingInterceptorEnabledViewHelper.html
+page.10.settings.test = <strong>Bla</strong>
+
+page.20 < page.10
+page.20.file = EXT:fluid_test/Resources/Private/Templates/EscapingInterceptorDisabledViewHelper.html
