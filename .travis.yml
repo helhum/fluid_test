@@ -24,6 +24,7 @@ cache:
 before_install:
   - composer self-update
   - composer --version
+  - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
 
 before_script:
   - composer require typo3/cms="$TYPO3_VERSION"
@@ -32,11 +33,6 @@ before_script:
   - export TYPO3_PATH_WEB=$PWD/.Build/Web
 
 script:
-  - >
-    echo;
-    echo "Running unit tests";
-    .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
-
   - >
     echo;
     echo "Running php lint";
