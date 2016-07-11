@@ -27,7 +27,6 @@ namespace Helhum\FluidTest\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Tests\Functional\Framework\Frontend\Response;
 use TYPO3\CMS\Core\Tests\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -36,6 +35,31 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Class RenderingTest
  */
 class RenderingTest extends FunctionalTestCase {
+
+    protected $configurationToUseInTestInstance = [
+        'EXTCONF' => [
+            'extbase' => [
+                'extensions' => [
+                    'FluidTest' => [
+                        'plugins' => [
+                            'Pi' => [
+                                'controllers' => [
+                                    'Template' => [
+                                        'actions' => [
+                                            'baseTemplate'
+                                        ],
+                                        'nonCacheableActions' => [
+                                            'baseTemplate'
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ];
 
     /**
      * @var array
@@ -98,7 +122,30 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedLayout
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorks($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    public function baseRenderingWorksForCObject($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    {
+        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier, 'mode' => 'TS');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains($expectedTemplate,
+            $content
+        );
+        $this->assertContains($expectedPartial,
+            $content
+        );
+        $this->assertContains($expectedLayout,
+            $content
+        );
+    }
+
+    /**
+     * @test
+     * @param string $tsIdentifier
+     * @param string $expectedTemplate
+     * @param string $expectedPartial
+     * @param string $expectedLayout
+     * @dataProvider differentOverrideScenariosDataProvider
+     */
+    public function baseRenderingWorksForController($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
     {
         $requestArguments = array('id' => '1', 'TS' => $tsIdentifier);
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();

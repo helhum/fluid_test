@@ -18,9 +18,15 @@ config {
 page = PAGE
 page.config.no_cache = 0
 page.config.contentObjectExceptionHandler = 0
-page.10 = FLUIDTEMPLATE
+
+page.10 = USER
 page.10 {
-	templateName = BaseTemplate
+	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+	extensionName = FluidTest
+	pluginName = Pi
+	vendorName = Helhum
+}
+lib.viewConfig {
 	templateRootPaths {
 		1 = EXT:fluid_test/Resources/Private/Base/Templates
 	}
@@ -33,7 +39,7 @@ page.10 {
 }
 
 [globalVar = GP:TS = overrideAll]
-page.10 {
+lib.viewConfig {
 	templateRootPaths {
 		10 = EXT:fluid_test/Resources/Private/Override/Templates
 	}
@@ -47,7 +53,7 @@ page.10 {
 [end]
 
 [globalVar = GP:TS = templateOverride]
-page.10 {
+lib.viewConfig {
 	templateRootPaths {
 		15 = EXT:fluid_test/Resources/Private/TemplateOverride/Templates
 		10 = EXT:fluid_test/Resources/Private/Override/Templates
@@ -56,7 +62,7 @@ page.10 {
 [end]
 
 [globalVar = GP:TS = partialOverride]
-page.10 {
+lib.viewConfig {
 	partialRootPaths {
 		15 = EXT:fluid_test/Resources/Private/PartialOverride/Partials
 		10 = EXT:fluid_test/Resources/Private/Override/Partials
@@ -65,7 +71,7 @@ page.10 {
 [end]
 
 [globalVar = GP:TS = layoutOverride]
-page.10 {
+lib.viewConfig {
 	layoutRootPaths {
 		15 = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts
 		10 = EXT:fluid_test/Resources/Private/Override/Layouts
@@ -73,3 +79,11 @@ page.10 {
 }
 [end]
 
+plugin.tx_fluidtest.view < lib.viewConfig
+
+[globalVar = GP:mode = TS]
+page.10 >
+page.10 < lib.viewConfig
+page.10 = FLUIDTEMPLATE
+page.10.templateName = BaseTemplate
+[end]
