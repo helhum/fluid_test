@@ -27,6 +27,7 @@ namespace Helhum\FluidTest\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Tests\Functional\Framework\Frontend\Response;
 use TYPO3\CMS\Core\Tests\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -53,20 +54,62 @@ class RenderingTest extends FunctionalTestCase {
         $this->setUpFrontendRootPage(1, array('EXT:fluid_test/Tests/Functional/Fixtures/Frontend/Basic.ts'));
     }
 
+    public function differentOverrideScenariosDataProvider()
+    {
+        return [
+            'base' => [
+                'base',
+                'Base Template',
+                'Base Partial',
+                'Base Layout'
+            ],
+            'overrideAll' => [
+                'overrideAll',
+                'Override Template',
+                'Override Partial',
+                'Override Layout'
+            ],
+            'templateOverride' => [
+                'templateOverride',
+                'TemplateOverride',
+                'Base Partial',
+                'Base Layout'
+            ],
+            'partialOverride' => [
+                'partialOverride',
+                'Base Template',
+                'PartialOverride',
+                'Base Layout'
+            ],
+            'layoutOverride' => [
+                'layoutOverride',
+                'Base Template',
+                'Base Partial',
+                'LayoutOverride'
+            ],
+        ];
+    }
+
     /**
      * @test
+     * @param string $tsIdentifier
+     * @param string $expectedTemplate
+     * @param string $expectedPartial
+     * @param string $expectedLayout
+     * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function escapingWorksAsExpected()
+    public function baseRenderingWorks($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
     {
-        $requestArguments = array('id' => '1');
+        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier);
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
-
-        $this->assertContains(
-'Call: &lt;ft:escapingInterceptorEnabled&gt;&#123;settings.test&#125;&lt;/ft:escapingInterceptorEnabled&gt;
-<br>
-Output: &lt;strong&gt;Bla&lt;/strong&gt;',
-            $content,
-            'Tag syntax with children, properly encodes the fluid variable value.'
+        $this->assertContains($expectedTemplate,
+            $content
+        );
+        $this->assertContains($expectedPartial,
+            $content
+        );
+        $this->assertContains($expectedLayout,
+            $content
         );
     }
 
@@ -90,9 +133,13 @@ Output: &lt;strong&gt;Bla&lt;/strong&gt;',
         } else {
             $requestUrl = '/?' . GeneralUtility::implodeArrayForUrl('', $requestArguments);
         }
-
+        if (property_exists($this, 'instancePath')) {
+            $instancePath = $this->instancePath;
+        } else {
+            $instancePath = ORIGINAL_ROOT . 'typo3temp/functional-' . substr(sha1(get_class($this)), 0, 7);
+        }
         $arguments = array(
-            'documentRoot' => ORIGINAL_ROOT . 'typo3temp/functional-' . substr(sha1(get_class($this)), 0, 7),
+            'documentRoot' => $instancePath,
             'requestUrl' => 'http://localhost' . $requestUrl,
         );
 
@@ -119,5 +166,4 @@ Output: &lt;strong&gt;Bla&lt;/strong&gt;',
         $response = new Response($result['status'], $result['content'], $result['error']);
         return $response;
     }
-
 }
