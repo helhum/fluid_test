@@ -61,6 +61,15 @@ lib.viewConfig {
 }
 [end]
 
+[globalVar = GP:TS = templateOverrideManual]
+lib.viewConfig {
+	templateRootPaths {
+		10 = EXT:fluid_test/Resources/Private/Override/Templates
+		bla = EXT:fluid_test/Resources/Private/TemplateOverride/Templates
+	}
+}
+[end]
+
 [globalVar = GP:TS = partialOverride]
 lib.viewConfig {
 	partialRootPaths {
@@ -70,11 +79,29 @@ lib.viewConfig {
 }
 [end]
 
+[globalVar = GP:TS = partialOverrideManual]
+lib.viewConfig {
+	partialRootPaths {
+		10 = EXT:fluid_test/Resources/Private/Override/Partials
+		bla = EXT:fluid_test/Resources/Private/PartialOverride/Partials
+	}
+}
+[end]
+
 [globalVar = GP:TS = layoutOverride]
 lib.viewConfig {
 	layoutRootPaths {
 		15 = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts
 		10 = EXT:fluid_test/Resources/Private/Override/Layouts
+	}
+}
+[end]
+
+[globalVar = GP:TS = layoutOverrideManual]
+lib.viewConfig {
+	layoutRootPaths {
+		10 = EXT:fluid_test/Resources/Private/Override/Layouts
+		bla = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts
 	}
 }
 [end]

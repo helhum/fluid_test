@@ -99,14 +99,32 @@ class RenderingTest extends FunctionalTestCase {
                 'Base Partial',
                 'Base Layout'
             ],
+            'templateOverrideManual' => [
+                'templateOverrideManual',
+                'TemplateOverride',
+                'Base Partial',
+                'Base Layout'
+            ],
             'partialOverride' => [
                 'partialOverride',
                 'Base Template',
                 'PartialOverride',
                 'Base Layout'
             ],
+            'partialOverrideManual' => [
+                'partialOverrideManual',
+                'Base Template',
+                'PartialOverride',
+                'Base Layout'
+            ],
             'layoutOverride' => [
                 'layoutOverride',
+                'Base Template',
+                'Base Partial',
+                'LayoutOverride'
+            ],
+            'layoutOverrideManual' => [
+                'layoutOverrideManual',
                 'Base Template',
                 'Base Partial',
                 'LayoutOverride'
