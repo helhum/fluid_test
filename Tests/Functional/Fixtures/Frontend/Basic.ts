@@ -28,26 +28,26 @@ page.10 {
 }
 lib.viewConfig {
 	templateRootPaths {
-		1 = EXT:fluid_test/Resources/Private/Base/Templates
+		1 = EXT:fluid_test/Resources/Private/Base/Templates/
 	}
 	partialRootPaths {
-		1 = EXT:fluid_test/Resources/Private/Base/Partials
+		1 = EXT:fluid_test/Resources/Private/Base/Partials/
 	}
 	layoutRootPaths {
-		1 = EXT:fluid_test/Resources/Private/Base/Layouts
+		1 = EXT:fluid_test/Resources/Private/Base/Layouts/
 	}
 }
 
 [globalVar = GP:TS = overrideAll]
 lib.viewConfig {
 	templateRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Templates
+		10 = EXT:fluid_test/Resources/Private/Override/Templates/
 	}
 	partialRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Partials
+		10 = EXT:fluid_test/Resources/Private/Override/Partials/
 	}
 	layoutRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Layouts
+		10 = EXT:fluid_test/Resources/Private/Override/Layouts/
 	}
 }
 [end]
@@ -55,8 +55,8 @@ lib.viewConfig {
 [globalVar = GP:TS = templateOverride]
 lib.viewConfig {
 	templateRootPaths {
-		15 = EXT:fluid_test/Resources/Private/TemplateOverride/Templates
-		10 = EXT:fluid_test/Resources/Private/Override/Templates
+		15 = EXT:fluid_test/Resources/Private/TemplateOverride/Templates/
+		10 = EXT:fluid_test/Resources/Private/Override/Templates/
 	}
 }
 [end]
@@ -64,8 +64,8 @@ lib.viewConfig {
 [globalVar = GP:TS = templateOverrideManual]
 lib.viewConfig {
 	templateRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Templates
-		bla = EXT:fluid_test/Resources/Private/TemplateOverride/Templates
+		10 = EXT:fluid_test/Resources/Private/Override/Templates/
+		bla = EXT:fluid_test/Resources/Private/TemplateOverride/Templates/
 	}
 }
 [end]
@@ -73,8 +73,8 @@ lib.viewConfig {
 [globalVar = GP:TS = partialOverride]
 lib.viewConfig {
 	partialRootPaths {
-		15 = EXT:fluid_test/Resources/Private/PartialOverride/Partials
-		10 = EXT:fluid_test/Resources/Private/Override/Partials
+		15 = EXT:fluid_test/Resources/Private/PartialOverride/Partials/
+		10 = EXT:fluid_test/Resources/Private/Override/Partials/
 	}
 }
 [end]
@@ -82,8 +82,8 @@ lib.viewConfig {
 [globalVar = GP:TS = partialOverrideManual]
 lib.viewConfig {
 	partialRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Partials
-		bla = EXT:fluid_test/Resources/Private/PartialOverride/Partials
+		10 = EXT:fluid_test/Resources/Private/Override/Partials/
+		bla = EXT:fluid_test/Resources/Private/PartialOverride/Partials/
 	}
 }
 [end]
@@ -91,8 +91,8 @@ lib.viewConfig {
 [globalVar = GP:TS = layoutOverride]
 lib.viewConfig {
 	layoutRootPaths {
-		15 = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts
-		10 = EXT:fluid_test/Resources/Private/Override/Layouts
+		15 = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts/
+		10 = EXT:fluid_test/Resources/Private/Override/Layouts/
 	}
 }
 [end]
@@ -100,8 +100,8 @@ lib.viewConfig {
 [globalVar = GP:TS = layoutOverrideManual]
 lib.viewConfig {
 	layoutRootPaths {
-		10 = EXT:fluid_test/Resources/Private/Override/Layouts
-		bla = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts
+		10 = EXT:fluid_test/Resources/Private/Override/Layouts/
+		bla = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts/
 	}
 }
 [end]
@@ -111,6 +111,8 @@ plugin.tx_fluidtest.view < lib.viewConfig
 [globalVar = GP:mode = TS]
 page.10 >
 page.10 < lib.viewConfig
+
+
 page.10 = FLUIDTEMPLATE
 page.10.templateName = BaseTemplate
 [end]
