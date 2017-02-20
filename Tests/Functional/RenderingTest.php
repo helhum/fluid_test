@@ -27,8 +27,8 @@ namespace Helhum\FluidTest\Tests\Functional;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use TYPO3\CMS\Core\Tests\Functional\Framework\Frontend\Response;
-use TYPO3\CMS\Core\Tests\FunctionalTestCase;
+use Nimut\TestingFramework\Http\Response;
+use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -185,7 +185,6 @@ class RenderingTest extends FunctionalTestCase {
      * ***************/
 
 
-
     /**
      * @param array $requestArguments
      * @param bool $failOnFailure
@@ -201,14 +200,14 @@ class RenderingTest extends FunctionalTestCase {
         if (property_exists($this, 'instancePath')) {
             $instancePath = $this->instancePath;
         } else {
-            $instancePath = ORIGINAL_ROOT . 'typo3temp/functional-' . substr(sha1(get_class($this)), 0, 7);
+            $instancePath = ORIGINAL_ROOT . 'typo3temp/var/tests/functional-' . substr(sha1(get_class($this)), 0, 7);
         }
         $arguments = array(
             'documentRoot' => $instancePath,
             'requestUrl' => 'http://localhost' . $requestUrl,
         );
 
-        $template = new \Text_Template(ORIGINAL_ROOT . 'typo3/sysext/core/Tests/Functional/Fixtures/Frontend/request.tpl');
+        $template = new \Text_Template(__DIR__ . '/Fixtures/Frontend/request.tpl');
         $template->setVar(
             array(
                 'arguments' => var_export($arguments, true),
@@ -218,10 +217,11 @@ class RenderingTest extends FunctionalTestCase {
 
         $php = \PHPUnit_Util_PHP::factory();
         $response = $php->runJob($template->render());
+
         $result = json_decode($response['stdout'], true);
 
         if ($result === null) {
-            $this->fail('Frontend Response is empty');
+            $this->fail('Frontend Response has errors. Message: ' . $response['stdout'] . chr(10) . $response['stderr']);
         }
 
         if ($failOnFailure && $result['status'] === Response::STATUS_Failure) {

@@ -18,11 +18,11 @@
     ],
     "license": "GPL-2.0+",
     "require": {
-        "typo3/cms-core": "^7.6 || ^8.0"
+        "typo3/cms-core": "^7.6 || ^8.0",
+        "typo3/cms": "^7.6"
     },
     "require-dev": {
-        "mikey179/vfsStream": "1.4.*@dev",
-        "phpunit/phpunit": "~4.7.0"
+        "nimut/testing-framework": "dev-add-functional-tests"
     },
     "autoload": {
         "psr-4": {
@@ -31,9 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Helhum\\FluidTest\\Tests\\": "Tests",
-            "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
-            "TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+            "Helhum\\FluidTest\\Tests\\": "Tests"
         }
     },
     "replace": {
