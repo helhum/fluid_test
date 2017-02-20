@@ -7,7 +7,7 @@ php:
 env:
   matrix:
     - TYPO3_VERSION="^7.6"
-    - TYPO3_VERSION="dev-master"
+    - TYPO3_VERSION="dev-master as 8.6.0"
 
 sudo: false
 
@@ -22,9 +22,6 @@ cache:
 
 before_install:
   - phpenv config-rm xdebug.ini
-  - composer self-update
-  - composer --version
-  - if [ "$GITHUB_COMPOSER_AUTH" ]; then composer config -g github-oauth.github.com $GITHUB_COMPOSER_AUTH; fi
 
 before_script:
   - composer require typo3/cms="$TYPO3_VERSION"
