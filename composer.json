@@ -18,25 +18,24 @@
     ],
     "license": "GPL-2.0+",
     "require": {
-        "typo3/cms-core": "^7.6 || ^8.0",
-        "typo3/cms": "^7.6"
+        "typo3/cms-core": "^7.6 || ^8.0"
     },
     "require-dev": {
         "nimut/testing-framework": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Helhum\\FluidTest\\": "Classes"
+            "Helhum\\FluidTest\\": "Classes/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Helhum\\FluidTest\\Tests\\": "Tests"
+            "Helhum\\FluidTest\\Tests\\": "Tests/"
         }
     },
     "replace": {
         "fluid_test": "self.version",
-        "typo3-ter/ext-scaffold": "self.version"
+        "typo3-ter/fluid_test": "self.version"
     },
     "config": {
         "vendor-dir": ".Build/vendor",
