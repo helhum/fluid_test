@@ -16,11 +16,11 @@ namespace Helhum\FluidTest\ViewHelpers;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class EscapingInterceptorDisabledViewHelper
- */
-abstract class AbstractEscapingBaseViewHelper extends AbstractViewHelper
+class VarExportViewHelper extends AbstractViewHelper
 {
+    protected $escapeChildren = true;
+    protected $escapeOutput = false;
+
     /**
      * @param string $content
      * @return string
@@ -30,6 +30,6 @@ abstract class AbstractEscapingBaseViewHelper extends AbstractViewHelper
         if ($content === null) {
             $content = $this->renderChildren();
         }
-        return $content;
+        return var_export($content, true);
     }
 }
