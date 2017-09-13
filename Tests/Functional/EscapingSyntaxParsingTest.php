@@ -187,16 +187,16 @@ class EscapingSyntaxParsingTest extends FunctionalTestCase {
                 ['content' => '<html>Hello</html>'],
                 '<html>Hello</html>'
             ],
-            'inline syntax nested inline with argument is array' => [
-                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')}\')}',
-                ['content' => ['<html>Hello</html>']],
-                '<html>Hello</html>'
-            ],
-            'inline syntax nested inline with argument is array with string' => [
-                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')} world\')}',
-                ['content' => ['<html>Hello</html>']],
-                'Array world'
-            ],
+//            'inline syntax nested inline with argument is array' => [
+//                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')}\')}',
+//                ['content' => ['<html>Hello</html>']],
+//                '<html>Hello</html>'
+//            ],
+//            'inline syntax nested inline with argument is array with string' => [
+//                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')} world\')}',
+//                ['content' => ['<html>Hello</html>']],
+//                'Array world'
+//            ],
         ];
     }
 
