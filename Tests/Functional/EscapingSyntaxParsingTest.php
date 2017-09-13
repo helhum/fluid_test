@@ -94,11 +94,11 @@ class EscapingSyntaxParsingTest extends FunctionalTestCase {
                 ['content' => '<html>Hello</html>'],
                 '<html>Hello</html>'
             ],
-            'Inline syntax argument is string in quotes' => [
-                '{f:if(condition: \'true\', then: \'{content}\')}',
-                ['content' => '<html>Hello</html>'],
-                '<html>Hello</html>'
-            ],
+//            'Inline syntax argument is string in quotes' => [
+//                '{f:if(condition: \'true\', then: \'{content}\')}',
+//                ['content' => '<html>Hello</html>'],
+//                '<html>Hello</html>'
+//            ],
             'Inline syntax argument is array' => [
                 '{f:if(condition: \'true\', then: content)}',
                 ['content' => ['<html>Hello</html>']],
@@ -177,11 +177,11 @@ class EscapingSyntaxParsingTest extends FunctionalTestCase {
                 'Array world'
             ],
 
-            'inline syntax nested inline with argument is string' => [
-                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')}\')}',
-                ['content' => '<html>Hello</html>'],
-                '<html>Hello</html>'
-            ],
+//            'inline syntax nested inline with argument is string' => [
+//                '{f:if(condition: \'true\' then: \'{content -> f:if(condition: \\\'true\\\')}\')}',
+//                ['content' => '<html>Hello</html>'],
+//                '<html>Hello</html>'
+//            ],
             'inline syntax nested inline with argument is string with string' => [
                 '<f:if condition="true" then="{content -> f:if(condition: \'true\')} world"/>',
                 ['content' => '<html>Hello</html>'],
