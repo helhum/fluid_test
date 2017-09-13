@@ -10,6 +10,6 @@ class TemplateController extends ActionController
 {
     public function baseTemplateAction()
     {
-        
+        $this->view->assign('objects', ['foo']);
     }
 }

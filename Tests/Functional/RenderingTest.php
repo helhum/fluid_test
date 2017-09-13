@@ -85,49 +85,50 @@ class RenderingTest extends FunctionalTestCase {
                 'base',
                 'Base Template',
                 'Base Partial',
-                'Base Layout'
+                'Base Layout',
+                'PAGINATE WIDGET',
             ],
             'overrideAll' => [
                 'overrideAll',
                 'Override Template',
                 'Override Partial',
-                'Override Layout'
+                'Override Layout',
             ],
             'templateOverride' => [
                 'templateOverride',
                 'TemplateOverride',
                 'Base Partial',
-                'Base Layout'
+                'Base Layout',
             ],
             'templateOverrideManual' => [
                 'templateOverrideManual',
                 'TemplateOverride',
                 'Base Partial',
-                'Base Layout'
+                'Base Layout',
             ],
             'partialOverride' => [
                 'partialOverride',
                 'Base Template',
                 'PartialOverride',
-                'Base Layout'
+                'Base Layout',
             ],
             'partialOverrideManual' => [
                 'partialOverrideManual',
                 'Base Template',
                 'PartialOverride',
-                'Base Layout'
+                'Base Layout',
             ],
             'layoutOverride' => [
                 'layoutOverride',
                 'Base Template',
                 'Base Partial',
-                'LayoutOverride'
+                'LayoutOverride',
             ],
             'layoutOverrideManual' => [
                 'layoutOverrideManual',
                 'Base Template',
                 'Base Partial',
-                'LayoutOverride'
+                'LayoutOverride',
             ],
         ];
     }
@@ -161,9 +162,10 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedTemplate
      * @param string $expectedPartial
      * @param string $expectedLayout
+     * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForControllerAsGlobalUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    public function baseRenderingWorksForControllerAsGlobalUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
         $requestArguments = array('id' => '1', 'TS' => $tsIdentifier);
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
@@ -176,6 +178,11 @@ class RenderingTest extends FunctionalTestCase {
         $this->assertContains($expectedLayout,
             $content
         );
+        if ($expectedWidget) {
+            $this->assertContains($expectedWidget,
+                $content
+            );
+        }
     }
 
 
@@ -185,9 +192,10 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedTemplate
      * @param string $expectedPartial
      * @param string $expectedLayout
+     * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForControllerAsPluginUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    public function baseRenderingWorksForControllerAsPluginUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
         $requestArguments = array('id' => '1', 'TS' => $tsIdentifier, 'mode' => 'plugin');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
@@ -200,6 +208,11 @@ class RenderingTest extends FunctionalTestCase {
         $this->assertContains($expectedLayout,
             $content
         );
+        if ($expectedWidget) {
+            $this->assertContains($expectedWidget,
+                $content
+            );
+        }
     }
 
 
