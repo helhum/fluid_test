@@ -106,7 +106,12 @@ lib.viewConfig {
 }
 [end]
 
+page.10.view < lib.viewConfig
+
+[globalVar = GP:mode = plugin]
+page.10.view >
 plugin.tx_fluidtest.view < lib.viewConfig
+[end]
 
 [globalVar = GP:mode = TS]
 page.10 >

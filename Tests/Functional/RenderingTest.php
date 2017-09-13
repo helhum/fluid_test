@@ -163,9 +163,33 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedLayout
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForController($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    public function baseRenderingWorksForControllerAsGlobalUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
     {
         $requestArguments = array('id' => '1', 'TS' => $tsIdentifier);
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains($expectedTemplate,
+            $content
+        );
+        $this->assertContains($expectedPartial,
+            $content
+        );
+        $this->assertContains($expectedLayout,
+            $content
+        );
+    }
+
+
+    /**
+     * @test
+     * @param string $tsIdentifier
+     * @param string $expectedTemplate
+     * @param string $expectedPartial
+     * @param string $expectedLayout
+     * @dataProvider differentOverrideScenariosDataProvider
+     */
+    public function baseRenderingWorksForControllerAsPluginUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    {
+        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier, 'mode' => 'plugin');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
         $this->assertContains($expectedTemplate,
             $content
