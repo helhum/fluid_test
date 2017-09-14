@@ -18,8 +18,7 @@
     ],
     "license": "GPL-2.0+",
     "require": {
-        "typo3/cms-core": "^7.6 || ^8.0",
-        "cweagans/composer-patches": "^1.6"
+        "typo3/cms-core": "^7.6 || ^8.0"
     },
     "require-dev": {
         "typo3/cms": "^8.7",
@@ -53,10 +52,6 @@
         ]
     },
     "extra": {
-        "patches": {
-            "typo3/cms": {
-            }
-        },
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         },
