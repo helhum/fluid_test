@@ -135,15 +135,15 @@ class RenderingTest extends FunctionalTestCase {
 
     /**
      * @test
-     * @param string $tsIdentifier
+     * @param string $overrideType
      * @param string $expectedTemplate
      * @param string $expectedPartial
      * @param string $expectedLayout
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForCObject($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout)
+    public function baseRenderingWorksForCObject($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout)
     {
-        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier, 'mode' => 'TS');
+        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'fluidTemplate');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
         $this->assertContains($expectedTemplate,
             $content
@@ -158,16 +158,16 @@ class RenderingTest extends FunctionalTestCase {
 
     /**
      * @test
-     * @param string $tsIdentifier
+     * @param string $overrideType
      * @param string $expectedTemplate
      * @param string $expectedPartial
      * @param string $expectedLayout
      * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForControllerAsGlobalUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
+    public function baseRenderingWorksForControllerAsGlobalUsage($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
-        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier);
+        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'controller');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
         $this->assertContains($expectedTemplate,
             $content
@@ -188,16 +188,16 @@ class RenderingTest extends FunctionalTestCase {
 
     /**
      * @test
-     * @param string $tsIdentifier
+     * @param string $overrideType
      * @param string $expectedTemplate
      * @param string $expectedPartial
      * @param string $expectedLayout
      * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
      */
-    public function baseRenderingWorksForControllerAsPluginUsage($tsIdentifier, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
+    public function baseRenderingWorksForControllerAsPluginUsage($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
-        $requestArguments = array('id' => '1', 'TS' => $tsIdentifier, 'mode' => 'plugin');
+        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'plugin');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
         $this->assertContains($expectedTemplate,
             $content

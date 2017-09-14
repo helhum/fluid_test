@@ -19,13 +19,6 @@ page = PAGE
 page.config.no_cache = 0
 page.config.contentObjectExceptionHandler = 0
 
-page.10 = USER
-page.10 {
-	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	extensionName = FluidTest
-	pluginName = Pi
-	vendorName = Helhum
-}
 lib.viewConfig {
 	templateRootPaths {
 		1 = EXT:fluid_test/Resources/Private/Base/Templates/
@@ -44,7 +37,7 @@ lib.viewConfig {
 	}
 }
 
-[globalVar = GP:TS = overrideAll]
+[globalVar = GP:override = overrideAll]
 lib.viewConfig {
 	templateRootPaths {
 		10 = EXT:fluid_test/Resources/Private/Override/Templates/
@@ -58,7 +51,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = templateOverride]
+[globalVar = GP:override = templateOverride]
 lib.viewConfig {
 	templateRootPaths {
 		15 = EXT:fluid_test/Resources/Private/TemplateOverride/Templates/
@@ -67,7 +60,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = templateOverrideManual]
+[globalVar = GP:override = templateOverrideManual]
 lib.viewConfig {
 	templateRootPaths {
 		10 = EXT:fluid_test/Resources/Private/Override/Templates/
@@ -76,7 +69,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = partialOverride]
+[globalVar = GP:override = partialOverride]
 lib.viewConfig {
 	partialRootPaths {
 		15 = EXT:fluid_test/Resources/Private/PartialOverride/Partials/
@@ -85,7 +78,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = partialOverrideManual]
+[globalVar = GP:override = partialOverrideManual]
 lib.viewConfig {
 	partialRootPaths {
 		10 = EXT:fluid_test/Resources/Private/Override/Partials/
@@ -94,7 +87,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = layoutOverride]
+[globalVar = GP:override = layoutOverride]
 lib.viewConfig {
 	layoutRootPaths {
 		15 = EXT:fluid_test/Resources/Private/LayoutOverride/Layouts/
@@ -103,7 +96,7 @@ lib.viewConfig {
 }
 [end]
 
-[globalVar = GP:TS = layoutOverrideManual]
+[globalVar = GP:override = layoutOverrideManual]
 lib.viewConfig {
 	layoutRootPaths {
 		10 = EXT:fluid_test/Resources/Private/Override/Layouts/
@@ -112,18 +105,6 @@ lib.viewConfig {
 }
 [end]
 
-page.10.view < lib.viewConfig
-
-[globalVar = GP:mode = plugin]
-page.10.view >
-plugin.tx_fluidtest.view < lib.viewConfig
-[end]
-
-[globalVar = GP:mode = TS]
-page.10 >
-page.10 < lib.viewConfig
-
-
-page.10 = FLUIDTEMPLATE
-page.10.templateName = BaseTemplate
-[end]
+<INCLUDE_TYPOSCRIPT: source="FILE: ./FluidTemplateContentObject.ts" condition="[globalVar = GP:mode = fluidTemplate]">
+<INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbasePlugin.ts" condition="[globalVar = GP:mode = plugin]">
+<INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbasePlugin.ts" condition="[globalVar = GP:mode = controller]">
