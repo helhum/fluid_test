@@ -215,6 +215,21 @@ class RenderingTest extends FunctionalTestCase {
         }
     }
 
+    /**
+     * @test
+     */
+    public function baseRenderingWorksForControllerWithTwoPlugins()
+    {
+        $requestArguments = array('id' => '1', 'mode' => '2plugins');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains('Base Template',
+            $content
+        );
+        $this->assertContains('Override Template',
+            $content
+        );
+    }
+
 
 
     /* ***************

@@ -107,4 +107,5 @@ lib.viewConfig {
 
 <INCLUDE_TYPOSCRIPT: source="FILE: ./FluidTemplateContentObject.ts" condition="[globalVar = GP:mode = fluidTemplate]">
 <INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbasePlugin.ts" condition="[globalVar = GP:mode = plugin]">
-<INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbasePlugin.ts" condition="[globalVar = GP:mode = controller]">
+<INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbaseController.ts" condition="[globalVar = GP:mode = controller]">
+<INCLUDE_TYPOSCRIPT: source="FILE: ./ExtbaseTwoPlugins.ts" condition="[globalVar = GP:mode = 2plugins]">
