@@ -51,7 +51,7 @@
     "extra": {
         "patches": {
             "typo3/cms": {
-                "Fix Fluid view templatePaths": "https://review.typo3.org/gitweb?p=Packages/TYPO3.CMS.git;a=patch;h=a42c7e75017721f9c9a5b63b01145dc179720d59"
+                "Fix Fluid view templatePaths": "https://review.typo3.org/gitweb?p=Packages/TYPO3.CMS.git;a=patch;h=aea7610a7f7a506c30e864c08de3944efe8b52d0"
             }
         },
         "branch-alias": {
