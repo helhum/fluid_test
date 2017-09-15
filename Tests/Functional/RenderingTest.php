@@ -185,7 +185,6 @@ class RenderingTest extends FunctionalTestCase {
         }
     }
 
-
     /**
      * @test
      * @param string $overrideType
@@ -197,7 +196,37 @@ class RenderingTest extends FunctionalTestCase {
      */
     public function baseRenderingWorksForControllerAsPluginUsage($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
-        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'plugin');
+        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'plugin', 'pluginConfig' => 'extensionKey');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains($expectedTemplate,
+            $content
+        );
+        $this->assertContains($expectedPartial,
+            $content
+        );
+        $this->assertContains($expectedLayout,
+            $content
+        );
+        if ($expectedWidget) {
+            $this->assertContains($expectedWidget,
+                $content
+            );
+        }
+    }
+
+    /**
+     * @test
+     * @param string $overrideType
+     * @param string $expectedTemplate
+     * @param string $expectedPartial
+     * @param string $expectedLayout
+     * @param string $expectedWidget
+     * @dataProvider differentOverrideScenariosDataProvider
+     * @group exec
+     */
+    public function baseRenderingWorksForControllerAsPluginUsageWithPluginConfig($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
+    {
+        $requestArguments = array('id' => '1', 'override' => $overrideType, 'mode' => 'plugin', 'pluginConfig' => 'pluginName');
         $content = $this->fetchFrontendResponse($requestArguments)->getContent();
         $this->assertContains($expectedTemplate,
             $content
