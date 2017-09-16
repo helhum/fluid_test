@@ -86,7 +86,6 @@ class RenderingTest extends FunctionalTestCase {
                 'Base Template',
                 'Base Partial',
                 'Base Layout',
-                'PAGINATE WIDGET',
             ],
             'overrideAll' => [
                 'overrideAll',
@@ -187,6 +186,26 @@ class RenderingTest extends FunctionalTestCase {
 
     /**
      * @test
+     */
+    public function widgetTemplateCanBeOverridden()
+    {
+        $requestArguments = array('id' => '1', 'override' => 'base', 'mode' => 'controller', 'widgetConfig' => 'new');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains('PAGINATE WIDGET', $content);
+    }
+
+    /**
+     * @test
+     */
+    public function widgetTemplateCanBeOverriddenWithLegacyConfig()
+    {
+        $requestArguments = array('id' => '1', 'override' => 'base', 'mode' => 'controller', 'widgetConfig' => 'old');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains('PAGINATE WIDGET', $content);
+    }
+
+    /**
+     * @test
      * @param string $overrideType
      * @param string $expectedTemplate
      * @param string $expectedPartial
@@ -207,11 +226,6 @@ class RenderingTest extends FunctionalTestCase {
         $this->assertContains($expectedLayout,
             $content
         );
-        if ($expectedWidget) {
-            $this->assertContains($expectedWidget,
-                $content
-            );
-        }
     }
 
     /**
@@ -222,7 +236,6 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedLayout
      * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
-     * @group exec
      */
     public function baseRenderingWorksForControllerAsPluginUsageWithPluginConfig($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {
