@@ -12,3 +12,9 @@ plugin.tx_fluidtest.view < lib.viewConfig
 [globalVar = GP:pluginConfig = pluginName]
 plugin.tx_fluidtest_pi.view < lib.viewConfig
 [end]
+
+[globalVar = GP:pluginConfig = incomplete]
+plugin.tx_fluidtest_pi.view < lib.viewConfig
+plugin.tx_fluidtest_pi.view.partialRootPaths >
+plugin.tx_fluidtest_pi.view.layoutRootPaths >
+[end]

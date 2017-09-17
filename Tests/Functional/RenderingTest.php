@@ -230,6 +230,24 @@ class RenderingTest extends FunctionalTestCase {
 
     /**
      * @test
+     */
+    public function baseRenderingWorksForControllerAsPluginUsageWithIncompleteConfig()
+    {
+        $requestArguments = array('id' => '1', 'override' => 'base', 'mode' => 'plugin', 'pluginConfig' => 'incomplete');
+        $content = $this->fetchFrontendResponse($requestArguments)->getContent();
+        $this->assertContains('Base Template',
+            $content
+        );
+        $this->assertContains('Default Layout',
+            $content
+        );
+        $this->assertContains('Default Partial',
+            $content
+        );
+    }
+
+    /**
+     * @test
      * @param string $overrideType
      * @param string $expectedTemplate
      * @param string $expectedPartial
