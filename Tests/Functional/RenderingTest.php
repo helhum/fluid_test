@@ -163,6 +163,7 @@ class RenderingTest extends FunctionalTestCase {
      * @param string $expectedLayout
      * @param string $expectedWidget
      * @dataProvider differentOverrideScenariosDataProvider
+     * @group exec
      */
     public function baseRenderingWorksForControllerAsGlobalUsage($overrideType, $expectedTemplate, $expectedPartial, $expectedLayout, $expectedWidget = '')
     {

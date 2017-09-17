@@ -55,7 +55,7 @@
     "extra": {
         "patches": {
             "typo3/cms": {
-                "Fluid refactoring": "https://review.typo3.org/gitweb?p=Packages/TYPO3.CMS.git;a=patch;h=f0e4e68ac69c862169fb0113bdc232692fceeacb"
+                "Fluid refactoring": "https://review.typo3.org/gitweb?p=Packages/TYPO3.CMS.git;a=patch;h=e00f34de8232bbf318c49c22e8760a08a518e940"
             }
         },
         "branch-alias": {
